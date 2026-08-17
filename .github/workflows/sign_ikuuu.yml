@@ -35,4 +35,5 @@ jobs:
           WX_CORPID: ${{ secrets.WX_CORPID }}
           WX_CORPSECRET: ${{ secrets.WX_CORPSECRET }}
           WX_AGENTID: ${{ secrets.WX_AGENTID }}
+          SCKEY: ${{ secrets.SCKEY }}
         run: python sign_ikuuu.py
