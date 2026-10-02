@@ -85,7 +85,7 @@ def playwright_login(email, passwd):
         page = context.new_page()
         # 打开登录页
         page.goto(
-            'https://ikuuu.win/auth/login',
+            'https://ikuuu.top/auth/login',
             wait_until='networkidle'
         )
         print('填写账号密码...')
@@ -118,9 +118,9 @@ def playwright_login(email, passwd):
 # ─────────────────────────────
 def checkin_one_account(email, passwd):
     safe_email = mask_email(email)
-    check_url = 'https://ikuuu.win/user/checkin'
+    check_url = 'https://ikuuu.top/user/checkin'
     header = {
-        'origin': 'https://ikuuu.win',
+        'origin': 'https://ikuuu.top',
         'user-agent': USER_AGENT
     }
 
