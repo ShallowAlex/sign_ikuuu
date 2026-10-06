@@ -19,14 +19,17 @@ USER_AGENT = (
 SCKEY = os.environ.get('SCKEY') or '1'
 # PUSHPLUS
 Token = os.environ.get('TOKEN') or '1'
-def push(content):
+def push(content, flag=1):
     if SCKEY != '1':
         url = "https://sctapi.ftqq.com/{}.send?title={}&desp={}".format(SCKEY, 'ikuuu签到', content)
         requests.post(url)
         print('推送完成')
     elif Token != '1':
         headers = {'Content-Type': 'application/json'}
-        json = {"token": Token, 'title': 'ikuuu签到', 'content': content, "template": "json"}
+        if success:
+            json = {"token": Token, 'title': 'ikuuu签到成功', 'content': content, "template": "json"}
+        else:
+            json = {"token": Token, 'title': 'ikuuu签到失败', 'content': content, "template": "json"}
         resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
         print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
     else:
@@ -209,7 +212,7 @@ def handler(event=None, context=None):
     except Exception as e:
         content = f'签到失败：{str(e)}'
         print(content)
-        push(f"[ikuuu] 签到结果：\n{content}")
+        push(f"[ikuuu] 签到结果：\n{content}", 0)
         # send_wx(
         #     f"[ikuuu] 签到结果：{content}",
         #     corpid,
